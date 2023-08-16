@@ -1,28 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Result from './components/results';
 
 function App() {
-  const [num, setNum] = useState(0)
-
-  const handlePlus = () => {
-    setNum((prevState) => prevState + 1)
-  }
-  const handleMines = () => {
-    setNum((prevState) => prevState - 1)
-  }
-
-  // How to receive data from redux aka store
+  // useSelector is only for receiving value or data
+  const dispatch = useDispatch();
   const { total } = useSelector((counterStore) => counterStore);
   console.log(total)
+
+  // below action for dispatch(export) the case to redux(redux store ready to received the action below)
+  const handlePlus = () => {
+   const newTotal = total + 1;
+
+   dispatch({
+    type: 'ADD',
+    payload: newTotal,
+   })
+  }
+  const handleMines = () => {
+    const newTotal = total - 1;
+
+    dispatch({
+      type: 'MINES',
+      payload: newTotal,
+    })
+  }
 
   return (
     <div className="App">
       <button onClick={handlePlus}>+</button>
       <button onClick={handleMines}>-</button>
-      <h1>{num}</h1>
+      <h1>{total}</h1>
       <Result />
     </div>
   );
