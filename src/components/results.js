@@ -2,9 +2,9 @@ import React from "react";
 import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 
 const Result = () => {
-
-    const { total } = useSelector((counterState)=> counterState)
-    console.log(total);
+    const {total} = useSelector((counterStore) => counterStore);
+    console.log(total, 'this is result page');
+   
 
     return(
         <div>

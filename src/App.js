@@ -15,7 +15,7 @@ function App() {
   }
 
   // How to receive data from redux aka store
-  const { total } = useSelector((state) => state)
+  const { total } = useSelector((counterStore) => counterStore);
   console.log(total)
 
   return (
