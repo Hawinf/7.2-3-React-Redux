@@ -8,7 +8,7 @@ import Result from './components/results';
 function App() {
   // useSelector is only for receiving value or data
   const dispatch = useDispatch();
-  const { total } = useSelector((rootReducer) => rootReducer.counter);
+  const { total } = useSelector((rootReducer) => rootReducer.counterReducer);
 
   // below action for dispatch(export) the case to redux(redux store ready to received the action below)
   const handlePlus = () => {
