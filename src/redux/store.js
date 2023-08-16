@@ -1,28 +1,5 @@
 import { createStore } from "redux";
-
-const counterState = {
-    total: 20,
-    isLogin: false,
-}
-// below how to receive action from App.js with function
-const counterReducer = (state = counterState, action) => {
-    switch (action.type) {
-        case 'ADD':
-            return {
-                ...counterState,
-                total: action.payload,
-            }
-        case 'MINES': 
-            return {
-                ...counterState,
-                total: action.payload,
-            }
-            default:
-                return state
-    }
-    
-    return state;
-}
+import counterReducer from '../redux/reducers/counterReducer.js'
 
 const store = createStore(counterReducer);
 
