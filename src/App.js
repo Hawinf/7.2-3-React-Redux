@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Result from './components/results';
 
 function App() {
   const [num, setNum] = useState(0)
@@ -22,6 +23,7 @@ function App() {
       <button onClick={handlePlus}>+</button>
       <button onClick={handleMines}>-</button>
       <h1>{num}</h1>
+      <Result />
     </div>
   );
 }
