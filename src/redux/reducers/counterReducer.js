@@ -1,6 +1,6 @@
 const counterState = {
     total: 20,
-    isLogin: false,
+    isLogin: true,
 }
 // below how to receive action from App.js with function
 const counterReducer = (state = counterState, action) => {
