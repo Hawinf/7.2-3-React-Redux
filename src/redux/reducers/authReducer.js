@@ -1,7 +1,7 @@
-const counterState = {
+const authState = {
     isLogin: true,
 }
-const authReducer = (state = counterState) => {
+const authReducer = (state = authState) => {
     return state
 }
 

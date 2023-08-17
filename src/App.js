@@ -1,40 +1,35 @@
 import { useSelector, useDispatch } from 'react-redux';
 // import Result from './components/results';
 import { handleMines, handlePlus } from './redux/actions/counterAction';
+import rootReducer from './redux/reducers';
 
 function App() {
   
   const dispatch = useDispatch();
-  const { total } = useSelector((rootReducer) => rootReducer.counterReducer);
-  const {isLogin} = useSelector((counterState) => counterState.counterReducer)
-  console.log(isLogin)
+  // DRY DONT REPEAT YOURSELF
+  // const { total } = useSelector((rootReducer) => rootReducer.counterReducer);
+  // const {isLogin} = useSelector((counterState) => counterState.authReducer)
+  
+  // Instead Of DRY We can use Below Code by call all of them
+  const {authReducer, counterReducer} = useSelector(rootReducer=> rootReducer)
+  console.log(authReducer, counterReducer)
 
-  const handlePlus = () => {
-    const newTotal = total  + 1;
- 
-    dispatch({
-     type: 'ADD',
-     payload: newTotal,
-    })
-   }
-
-const handleMines = () => {
-     const newTotal = total - 1;
- 
-     dispatch({
-       type: 'MINES',
-       payload: newTotal,
-     })
-   }
+  // Function below to recall function from action with redux thunk middleware
+  const onAdd = () => {
+    dispatch(handlePlus(counterReducer))
+  };
+  const onMin = () => {
+    dispatch(handleMines(counterReducer))
+  };
 
   return (
     <div className="App">
-      <button onClick={handlePlus}>+</button>
-      <button onClick={handleMines}>-</button>
-      <h1>{total}</h1>
+      <button onClick={onAdd}>+</button>
+      <button onClick={onMin}>-</button>
+      <h1>{counterReducer.total}</h1>
       {/* <Result /> */}
       {
-        isLogin ? (
+        authReducer.isLogin ? (
           <>
             <p>Already Log In</p>
           </> ) : (
