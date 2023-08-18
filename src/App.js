@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 // import Result from './components/results';
+import handleAuth from './redux/actions/authAction';
 import { handleMines, handlePlus } from './redux/actions/counterAction';
 import rootReducer from './redux/reducers';
 
@@ -21,6 +22,9 @@ function App() {
   const onMin = () => {
     dispatch(handleMines(counterReducer))
   };
+  const onLogin = () => {
+    dispatch(handleAuth(authReducer.isLogin))
+  }
 
   return (
     <div className="App">
@@ -28,7 +32,7 @@ function App() {
       <button onClick={onMin}>-</button>
       <h1>{counterReducer.total}</h1>
       {/* <Result /> */}
-      {
+      {/* {
         authReducer.isLogin ? (
           <>
             <p>Already Log In</p>
@@ -37,7 +41,13 @@ function App() {
               <p>Please Log in</p>
             </>
           )
-      }
+      } */}
+      {/* <button>
+        {
+          authReducer.isLogin ? 'log out' : 'log in'
+        }
+      </button> */}
+      <button onClick={onLogin}>{authReducer.isLogin ? 'log out' : 'log in'}</button>
     </div>
   );
 }
